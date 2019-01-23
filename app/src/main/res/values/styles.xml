@@ -3,6 +3,7 @@
     <style name="hacksmileCustomHomeButton" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@color/material_grey_600</item>
+        <item name="android:width">10dp</item>
     </style>
 
     <!-- Base application theme. -->
@@ -14,6 +15,7 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="drawerArrowStyle">@style/hacksmileCustomHomeButton</item>
         <item name="android:navigationBarColor">@color/nav_bottom_bar</item>
+        <item name="android:statusBarColor">@color/nav_bottom_bar</item>
         <item name="android:windowLightNavigationBar">true</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>

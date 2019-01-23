@@ -12,9 +12,11 @@
     <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="15dp"
-            android:elevation="2dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:elevation="4dp"
             android:background="@drawable/bg_actionbar">
 
         <EditText android:layout_width="match_parent"
@@ -30,60 +32,72 @@
     <include layout="@layout/content_main"/>
 
     <LinearLayout android:layout_width="match_parent"
-                  android:layout_height="?attr/actionBarSize"
+                  android:layout_height="wrap_content"
                   android:layout_gravity="bottom"
-                  android:elevation="15dp"
-                  android:layout_marginTop="5dp"
-                  android:background="@color/nav_bottom_bar"
-                  android:id="@+id/nav_bottom_bar">
+                  android:orientation="vertical">
 
-        <TextView android:id="@+id/photos"
-                  android:layout_width="0dp"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="1.0"
-                  android:drawableTop="@drawable/ic_photo_black_24dp"
-                  android:textAlignment="center"
-                  android:textSize="@dimen/nav_bt_text_size"
-                  android:layout_gravity="center_vertical"
-                  android:clickable="true"
-                  android:focusable="true"
-                  android:text="@string/nav_bt_photos"/>
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="5dp"
+                  android:layout_gravity="bottom"
+                  android:background="@drawable/navbar_gradient">
+        </TextView>
 
-        <TextView android:id="@+id/albums"
-                  android:layout_width="0dp"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="1.0"
-                  android:drawableTop="@drawable/ic_collections_bookmark_black_24dp"
-                  android:textAlignment="center"
-                  android:textSize="@dimen/nav_bt_text_size"
-                  android:layout_gravity="center_vertical"
-                  android:clickable="true"
-                  android:focusable="true"
-                  android:text="@string/nav_bt_albums"/>
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="52dp"
+                      android:layout_gravity="bottom"
+                      android:layout_marginTop="5dp"
+                      android:background="@color/nav_bottom_bar"
+                      android:id="@+id/nav_bottom_bar">
 
-        <TextView android:id="@+id/assistant"
-                  android:layout_width="0dp"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="1.0"
-                  android:drawableTop="@drawable/ic_assistant_black_24dp"
-                  android:textAlignment="center"
-                  android:textSize="@dimen/nav_bt_text_size"
-                  android:layout_gravity="center_vertical"
-                  android:clickable="true"
-                  android:focusable="true"
-                  android:text="@string/nav_bt_assistant"/>
+            <TextView android:id="@+id/photos"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1.0"
+                      android:drawableTop="@drawable/ic_photo_black_24dp"
+                      android:textAlignment="center"
+                      android:textSize="@dimen/nav_bt_text_size"
+                      android:layout_gravity="center_vertical"
+                      android:clickable="true"
+                      android:focusable="true"
+                      android:text="@string/nav_bt_photos"/>
 
-        <TextView android:id="@+id/sharing"
-                  android:layout_width="0dp"
-                  android:layout_height="wrap_content"
-                  android:layout_weight="1.0"
-                  android:drawableTop="@drawable/ic_group_black_24dp"
-                  android:layout_gravity="center_vertical"
-                  android:textAlignment="center"
-                  android:textSize="@dimen/nav_bt_text_size"
-                  android:clickable="true"
-                  android:focusable="true"
-                  android:text="@string/nav_bt_sharing"/>
+            <TextView android:id="@+id/albums"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1.0"
+                      android:drawableTop="@drawable/ic_collections_bookmark_black_24dp"
+                      android:textAlignment="center"
+                      android:textSize="@dimen/nav_bt_text_size"
+                      android:layout_gravity="center_vertical"
+                      android:clickable="true"
+                      android:focusable="true"
+                      android:text="@string/nav_bt_albums"/>
+
+            <TextView android:id="@+id/assistant"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1.0"
+                      android:drawableTop="@drawable/ic_assistant_black_24dp"
+                      android:textAlignment="center"
+                      android:textSize="@dimen/nav_bt_text_size"
+                      android:layout_gravity="center_vertical"
+                      android:clickable="true"
+                      android:focusable="true"
+                      android:text="@string/nav_bt_assistant"/>
+
+            <TextView android:id="@+id/sharing"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      android:layout_weight="1.0"
+                      android:drawableTop="@drawable/ic_group_black_24dp"
+                      android:layout_gravity="center_vertical"
+                      android:textAlignment="center"
+                      android:textSize="@dimen/nav_bt_text_size"
+                      android:clickable="true"
+                      android:focusable="true"
+                      android:text="@string/nav_bt_sharing"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
