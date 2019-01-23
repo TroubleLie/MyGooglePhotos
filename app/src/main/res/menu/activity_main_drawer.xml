@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <group android:id="@+id/nav_group_one" android:checkableBehavior="single">
+        <item
+                android:id="@+id/folders"
+                android:icon="@drawable/ic_folder_open_grey_800_24dp"
+                android:title="Device folders"/>
+        <item
+                android:id="@+id/archive"
+                android:icon="@drawable/ic_archive_grey_800_24dp"
+                android:title="Archive"/>
+        <item
+                android:id="@+id/trash"
+                android:icon="@drawable/ic_delete_grey_800_24dp"
+                android:title="Trash"/>
+
+    </group>
+
+    <item android:title="Shared libraries">
+        <menu>
+            <item
+                    android:id="@+id/from_who"
+                    android:icon="@drawable/ic_account_circle_grey_800_24dp"
+                    android:title="From Whom"/>
+            <item
+                    android:id="@+id/share_with"
+                    android:icon="@drawable/ic_swap_vertical_circle_grey_800_24dp"
+                    android:title="Share with Whom"/>
+        </menu>
+
+    </item>
+
+    <group android:id="@+id/nav_group_two" android:checkableBehavior="single">
+        <item
+                android:id="@+id/free_space"
+                android:icon="@drawable/ic_phonelink_erase_grey_800_24dp"
+                android:title="Free up space"/>
+        <item
+                android:id="@+id/scan_photo"
+                android:icon="@drawable/ic_monochrome_photos_grey_800_24dp"
+                android:title="Scan photos"/>
+
+    </group>
+
+    <group android:id="@+id/nav_group_three" android:checkableBehavior="single">
+        <item
+                android:id="@+id/settings"
+                android:icon="@drawable/ic_settings_grey_800_24dp"
+                android:title="Free up space"/>
+        <item
+                android:id="@+id/feedback"
+                android:icon="@drawable/ic_feedback_grey_800_24dp"
+                android:title="Scan photos"/>
+        <item
+                android:id="@+id/help"
+                android:icon="@drawable/ic_help_outline_grey_800_24dp"
+                android:title="Scan photos"/>
+
+    </group>
+
+</menu>
