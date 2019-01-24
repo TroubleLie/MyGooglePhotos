@@ -1,6 +1,7 @@
 package com.example.mygooglephoto
 
 import android.content.Context
+import android.preference.PreferenceScreen
 import android.support.annotation.BinderThread
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -14,7 +15,9 @@ import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.module.AppGlideModule
 import android.util.Xml
+import android.widget.LinearLayout
 import org.xmlpull.v1.XmlPullParser
+import android.util.DisplayMetrics
 
 
 
@@ -41,7 +44,6 @@ class ImageAdapter(val context: Context, val items : List<String>) : RecyclerVie
         GlideApp.with(holder.view.findViewById(R.id.item) as ImageView)
             .load(items[position])
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-            .centerCrop().override(400,400)
             .into(holder.view.findViewById(R.id.item))
     }
 

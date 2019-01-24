@@ -3,6 +3,7 @@ package com.example.mygooglephoto
 import android.Manifest
 import android.app.Activity
 import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Outline
@@ -26,11 +27,14 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.util.Log
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
+import com.lzy.okgo.OkGo
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.photos.*
+import java.io.File
 
 
 class MainActivity : AppCompatActivity(),
@@ -53,6 +57,11 @@ class MainActivity : AppCompatActivity(),
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        OkGo.getInstance().init(this.application)
+
+        val filesDir = baseContext.filesDir.path
+        val myImage = MyImage("$filesDir/header.txt", "$filesDir/images.txt")
 
         requestAllPower(permissions)
 
