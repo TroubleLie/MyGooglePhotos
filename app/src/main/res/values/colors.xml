@@ -6,4 +6,5 @@
     <color name="nav_bt_down">#1976D0</color>
     <color name="nav_bt_up">@color/material_grey_600</color>
     <color name="nav_bottom_bar">#ffffff</color>
+    <color name="float_bar">#E3F2FD</color>
 </resources>
