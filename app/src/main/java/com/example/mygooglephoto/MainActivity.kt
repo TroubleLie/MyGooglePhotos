@@ -1,6 +1,9 @@
 package com.example.mygooglephoto
 
+import android.Manifest
+import android.app.Activity
 import android.app.PendingIntent.getActivity
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Outline
 import android.os.Bundle
@@ -17,13 +20,33 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import android.opengl.ETC1.getHeight
 import android.opengl.ETC1.getWidth
+import android.provider.MediaStore
+import android.support.v4.app.ActivityCompat
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.View
 import android.view.ViewOutlineProvider
-
+import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.photos.*
 
 
 class MainActivity : AppCompatActivity(),
     NavigationView.OnNavigationItemSelectedListener {
+
+    val photosFrgm = PhotosFrgm()
+    val albumsFrgm = AlbumsFrgm()
+    val assistFrgm = AssistFrgm()
+    val sharingFrgm = SharingFrgm()
+
+    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.INTERNET)
+
+    private var imagePaths = ArrayList<String>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +54,17 @@ class MainActivity : AppCompatActivity(),
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        val photosFrgm = PhotosFrgm()
-        val albumsFrgm = AlbumsFrgm()
-        val assistFrgm = AssistFrgm()
-        val sharingFrgm = SharingFrgm()
+        requestAllPower(permissions)
+
+        val cursor = contentResolver.query(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            null, null, null, null)
+
+        while (cursor.moveToNext())
+        {
+            this.imagePaths.add(cursor.getString(
+            cursor.getColumnIndex(MediaStore.Images.Media.DATA)))
+        }
 
         photos.setOnClickListener {
             setPhotos()
@@ -42,10 +72,16 @@ class MainActivity : AppCompatActivity(),
             resetAlbums()
             resetSharing()
 
+            photosView.visibility = View.VISIBLE
             if (!photosFrgm.isAdded)
+            {
                 fragmentManager.beginTransaction()
                     .replace(R.id.frgm_container, photosFrgm, "photos")
                     .commit()
+                photosView.layoutManager = StaggeredGridLayoutManager(
+                    3, StaggeredGridLayoutManager.VERTICAL)
+                photosView.adapter = ImageAdapter(baseContext ,imagePaths)
+            }
         }
 
         albums.setOnClickListener {
@@ -58,6 +94,7 @@ class MainActivity : AppCompatActivity(),
                 fragmentManager.beginTransaction()
                     .replace(R.id.frgm_container, albumsFrgm, "albums")
                     .commit()
+            photosView.visibility = View.INVISIBLE
         }
 
         assistant.setOnClickListener {
@@ -264,6 +301,19 @@ class MainActivity : AppCompatActivity(),
                 R.color.nav_bt_up
             )
         )
+    }
+
+    fun requestAllPower(permissions : Array<String>) {
+        for (permission in permissions)
+        {
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED)
+            {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission))
+                { }else{
+                    ActivityCompat.requestPermissions(this, permissions,1)
+                }
+            }
+        }
     }
 
 }
