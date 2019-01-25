@@ -1,5 +1,6 @@
 package com.example.mygooglephoto
 
+import android.R.attr.*
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -9,46 +10,27 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_albums.*
 import kotlinx.android.synthetic.main.albums.*
-import android.R.attr.top
-import android.R.attr.bottom
-import android.R.attr.right
-import android.R.attr.left
 import android.graphics.Rect
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import kotlinx.android.synthetic.main.full_image.*
 
 
-class PhotosActivity : AppCompatActivity()
+class PhotoActivity : AppCompatActivity()
 {
-
-    private var imagePaths = ArrayList<String>()
-
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_albums)
-        setSupportActionBar(toolbar2)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
+        setContentView(R.layout.full_image)
 
-        et_title.setText(intent.getStringExtra("title"))
-        et_title.focusable = View.NOT_FOCUSABLE
-
-        val cursor = contentResolver.query(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            null, null, null, null)
-
-        while (cursor.moveToNext())
-        {
-            this.imagePaths.add(cursor.getString(
-                cursor.getColumnIndex(MediaStore.Images.Media.DATA)))
+        full_photo.setOnClickListener {
+            finish()
         }
 
-        albumView.layoutManager = GridLayoutManager(baseContext, 4)
-        albumView.addItemDecoration(SpacesItemDecoration(8))
-        albumView.adapter = ImageAdapter(baseContext, imagePaths, PhotoActivity())
+        GlideApp.with(baseContext)
+            .load(intent.getStringExtra("path"))
+            .into(full_photo)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

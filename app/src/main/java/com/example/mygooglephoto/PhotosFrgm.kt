@@ -45,7 +45,7 @@ class PhotosFrgm : Fragment() {
         }
 
         photosView.layoutManager = GridLayoutManager(context,4)
-        photosView.adapter = ImageAdapter(this.context,imagePaths)
+        photosView.adapter = ImageAdapter(this.context,imagePaths,PhotoActivity())
 
         super.onViewCreated(view, savedInstanceState)
     }

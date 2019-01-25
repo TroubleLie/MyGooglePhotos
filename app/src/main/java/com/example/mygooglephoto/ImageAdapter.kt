@@ -1,6 +1,8 @@
 package com.example.mygooglephoto
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.preference.PreferenceScreen
 import android.support.annotation.BinderThread
 import android.support.v7.widget.RecyclerView
@@ -19,7 +21,10 @@ import android.widget.LinearLayout
 import org.xmlpull.v1.XmlPullParser
 import android.util.DisplayMetrics
 
-class ImageAdapter(val context: Context, val items : List<String>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+class ImageAdapter(val context: Context,
+                   val items : List<String>,
+                   val to : Activity)
+    : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -36,6 +41,9 @@ class ImageAdapter(val context: Context, val items : List<String>) : RecyclerVie
         holder: ImageAdapter.ViewHolder,
         position: Int
     ) {
+        holder.view.findViewById<ImageView>(R.id.item).setOnClickListener {
+            context.startActivity(Intent(context,to::class.java).putExtra("path", items[position]))
+        }
         GlideApp.with(holder.view.findViewById(R.id.item) as ImageView)
             .load(items[position])
             .skipMemoryCache(false)

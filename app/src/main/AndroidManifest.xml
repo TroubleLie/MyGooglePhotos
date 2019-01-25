@@ -25,6 +25,7 @@
 
         <activity android:name=".AlbumActivity" android:label="Albums" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".PhotosActivity" android:label="Photos" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".PhotoActivity" android:label="Photo" android:theme="@style/AppTheme.FullPhoto"/>
     </application>
 
 

@@ -51,11 +51,10 @@ class MainActivity : AppCompatActivity(),
     val assistFrgm = AssistFrgm()
     val sharingFrgm = SharingFrgm()
 
-    val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE,
+    val permissions = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE,
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.INTERNET)
-
-    private var imagePaths = ArrayList<String>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
