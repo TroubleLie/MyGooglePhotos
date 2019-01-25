@@ -14,6 +14,7 @@ import java.io.File
 
 class MyImage (val headerPath: String, val imagesPath:String){
     var images = ArrayList<ArrayList<String>>()
+    var idtfdImgs = ArrayList<ArrayList<String>>()
     var newImgs = ArrayList<ArrayList<String>>()
     var hasEdited = false
     var header = ArrayList<String>(2)
@@ -21,14 +22,30 @@ class MyImage (val headerPath: String, val imagesPath:String){
 
     fun loadStatus()
     {
-        status.first.forEachLine {
-            images.add(arrayListOf(it.split(" ")[0],it.split(" ")[1]))
+        status.second.forEachLine {
+            images.add(arrayListOf(it.split("@").first(),it.split("@").last()))
         }
-        status.second.forEachLine { header.add(it) }
+        status.first.forEachLine { header.add(it) }
 
-        print(header)
-        print(images)
+        classifier()
+
+        images.forEach{Log.d("images",it.first() + " " + it.last())}
+        idtfdImgs.forEach{Log.d("idtfdImgs",it.first() + " " + it.last())}
     }
+
+    fun classifier()
+    {
+        var temp = images
+        while (!temp.isEmpty() && idtfdImgs.size<=temp.size)
+        {
+            val content = ArrayList<String>()
+            val bound = temp.first().last()
+            temp.filter{it.last() == bound}
+                .forEach { content.add(it.first()); temp.remove(it) }
+            idtfdImgs.add(content)
+        }
+    }
+
 
     fun saveStatus()
     {

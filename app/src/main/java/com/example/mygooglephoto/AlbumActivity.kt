@@ -45,9 +45,13 @@ class AlbumActivity : AppCompatActivity()
 
         albumView.layoutManager = GridLayoutManager(baseContext, 4)
         albumView.addItemDecoration(SpacesItemDecoration(8))
+
+        val labels = Array(myImage.idtfdImgs.size) { i -> i.toString() }
+        val covers = ArrayList<String>()
+        myImage.idtfdImgs.forEach{covers.add(it.first())}
+
         albumView.adapter = AlbumSingleAdapter(baseContext,
-            arrayListOf("Chad Smith", "Will Ferrell"),
-            arrayListOf(imagePaths[30], imagePaths[23]), PhotosActivity())
+            labels.toList(), covers, PhotosActivity())
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

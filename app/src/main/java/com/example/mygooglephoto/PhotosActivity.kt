@@ -48,7 +48,7 @@ class PhotosActivity : AppCompatActivity()
 
         albumView.layoutManager = GridLayoutManager(baseContext, 4)
         albumView.addItemDecoration(SpacesItemDecoration(8))
-        albumView.adapter = ImageAdapter(baseContext, imagePaths, PhotoActivity())
+        albumView.adapter = ImageAdapter(baseContext, myImage.idtfdImgs[intent.getStringExtra("label").toInt()], PhotoActivity())
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.photos.*
+import java.io.File
 
 class PhotosFrgm : Fragment() {
 

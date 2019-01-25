@@ -39,6 +39,9 @@ import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.photos.*
 import java.io.File
 
+
+lateinit var myImage : MyImage
+
 @GlideModule
 class MyAppGlideModule : AppGlideModule()
 
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity(),
         OkGo.getInstance().init(this.application)
 
         val filesDir = baseContext.filesDir.path
-        val myImage = MyImage("$filesDir/header.txt", "$filesDir/images.txt")
+        myImage = MyImage("$filesDir/header.txt", "$filesDir/images.txt")
 
         requestAllPower(permissions)
 
@@ -153,7 +156,11 @@ class MainActivity : AppCompatActivity(),
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> {
+                myImage.loadStatus()
+                Toast.makeText(baseContext,"Uploaded",Toast.LENGTH_SHORT).show()
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }

@@ -40,7 +40,10 @@ class AlbumSingleAdapter(val context: Context, val items : List<String>,
 
         holder.view.findViewById<FrameLayout>(R.id.label_album_single)
             .setOnClickListener{
-                context.startActivity(Intent(context,to::class.java).putExtra("title",items[position]))
+                context.startActivity(
+                    Intent(context,to::class.java)
+                    .putExtra("title",items[position])
+                    .putExtra("label",position.toString()))
             }
 
         GlideApp.with(holder.view.findViewById(R.id.cover_single) as ImageView)

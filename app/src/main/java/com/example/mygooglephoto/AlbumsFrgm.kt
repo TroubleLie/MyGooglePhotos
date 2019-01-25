@@ -20,8 +20,6 @@ import kotlinx.android.synthetic.main.photos.*
 
 class AlbumsFrgm : Fragment() {
 
-    private var imagePaths = ArrayList<String>()
-
     override fun onCreateView(
         inflater: LayoutInflater?,
         container: ViewGroup?,
@@ -32,27 +30,18 @@ class AlbumsFrgm : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
 
-        val cursor = activity.contentResolver.query(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            null, null, null, null)
-
-        while (cursor.moveToNext())
+        if (!myImage.idtfdImgs.isEmpty())
         {
-            this.imagePaths.add(cursor.getString(
-                cursor.getColumnIndex(MediaStore.Images.Media.DATA)))
+            albumsView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            albumsView.addItemDecoration(SpacesItemDecoration(8))
+
+            albumsView.adapter = AlbumAdapter(activity.baseContext,
+                arrayListOf("People"),
+                arrayListOf(Pair(
+                    myImage.idtfdImgs.first().first(),
+                    myImage.idtfdImgs.last().first())),
+                AlbumActivity())
         }
-
-        albumsView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        albumsView.addItemDecoration(SpacesItemDecoration(8))
-
-        albumsView.adapter = AlbumAdapter(activity.baseContext,
-            arrayListOf("People","People","People","People","People","People"),
-            arrayListOf(Pair(imagePaths[23],imagePaths[30]),
-                Pair(imagePaths[23],imagePaths[30]),
-                Pair(imagePaths[23],imagePaths[30]),
-                Pair(imagePaths[23],imagePaths[30]),
-                Pair(imagePaths[23],imagePaths[30]),
-                Pair(imagePaths[23],imagePaths[30])), AlbumActivity())
 
         super.onViewCreated(view, savedInstanceState)
     }
