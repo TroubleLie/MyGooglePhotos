@@ -32,10 +32,15 @@ import android.util.Log
 import android.view.View
 import android.view.ViewOutlineProvider
 import android.widget.LinearLayout
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import com.lzy.okgo.OkGo
 import kotlinx.android.synthetic.main.nav_header_main.*
 import kotlinx.android.synthetic.main.photos.*
 import java.io.File
+
+@GlideModule
+class MyAppGlideModule : AppGlideModule()
 
 
 class MainActivity : AppCompatActivity(),

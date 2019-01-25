@@ -23,9 +23,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AlbumActivity" android:label="Albums" android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity android:name=".AlbumActivity" android:label="Albums" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".PhotosActivity" android:label="Photos" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 

@@ -15,7 +15,7 @@ import android.widget.TextView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class AlbumAdapter(val context: Context, val items : List<String>,
-                   val covers : ArrayList<Pair<String,String>>)
+                   val covers : ArrayList<Pair<String,String>>, val to : Activity)
     : RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -37,7 +37,7 @@ class AlbumAdapter(val context: Context, val items : List<String>,
 
         holder.view.findViewById<LinearLayout>(R.id.label_album)
             .setOnClickListener{
-                context.startActivity(Intent(context,AlbumActivity::class.java))
+                context.startActivity(Intent(context,to::class.java))
             }
 
         GlideApp.with(holder.view.findViewById(R.id.cover_one) as ImageView)

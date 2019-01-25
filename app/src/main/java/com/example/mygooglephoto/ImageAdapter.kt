@@ -19,11 +19,6 @@ import android.widget.LinearLayout
 import org.xmlpull.v1.XmlPullParser
 import android.util.DisplayMetrics
 
-
-
-@GlideModule
-class MyAppGlideModule : AppGlideModule()
-
 class ImageAdapter(val context: Context, val items : List<String>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -43,8 +38,8 @@ class ImageAdapter(val context: Context, val items : List<String>) : RecyclerVie
     ) {
         GlideApp.with(holder.view.findViewById(R.id.item) as ImageView)
             .load(items[position])
-            .skipMemoryCache(true)
-            .thumbnail(0.25f)
+            .skipMemoryCache(false)
+            .override(500)
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .into(holder.view.findViewById(R.id.item))
     }

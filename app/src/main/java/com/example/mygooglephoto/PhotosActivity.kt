@@ -18,7 +18,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 
 
-class AlbumActivity : AppCompatActivity()
+class PhotosActivity : AppCompatActivity()
 {
 
     private var imagePaths = ArrayList<String>()
@@ -33,6 +33,9 @@ class AlbumActivity : AppCompatActivity()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        et_title.setText(intent.getStringExtra("title"))
+        et_title.focusable = View.NOT_FOCUSABLE
+
         val cursor = contentResolver.query(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             null, null, null, null)
@@ -45,9 +48,7 @@ class AlbumActivity : AppCompatActivity()
 
         albumView.layoutManager = GridLayoutManager(baseContext, 4)
         albumView.addItemDecoration(SpacesItemDecoration(8))
-        albumView.adapter = AlbumSingleAdapter(baseContext,
-            arrayListOf("Chad Smith", "Will Ferrell"),
-            arrayListOf(imagePaths[30], imagePaths[23]), PhotosActivity())
+        albumView.adapter = ImageAdapter(baseContext, imagePaths)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -68,7 +69,7 @@ class AlbumActivity : AppCompatActivity()
             outRect.bottom = space
             // Add top margin only for the first item to avoid double space between items
             //if (parent.getChildLayoutPosition(view) == 0)
-                //outRect.top = space
+            //outRect.top = space
         }
     }
 }

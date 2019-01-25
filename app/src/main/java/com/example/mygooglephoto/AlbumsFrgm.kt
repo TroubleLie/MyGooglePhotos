@@ -2,9 +2,12 @@ package com.example.mygooglephoto
 
 import android.app.Fragment
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,13 +42,34 @@ class AlbumsFrgm : Fragment() {
                 cursor.getColumnIndex(MediaStore.Images.Media.DATA)))
         }
 
-        albumsView.layoutManager = GridLayoutManager( context, 3)
+        albumsView.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        albumsView.addItemDecoration(SpacesItemDecoration(8))
 
         albumsView.adapter = AlbumAdapter(activity.baseContext,
-            arrayListOf("People"),
-            arrayListOf(Pair(imagePaths[23],imagePaths[30])
-        ))
+            arrayListOf("People","People","People","People","People","People"),
+            arrayListOf(Pair(imagePaths[23],imagePaths[30]),
+                Pair(imagePaths[23],imagePaths[30]),
+                Pair(imagePaths[23],imagePaths[30]),
+                Pair(imagePaths[23],imagePaths[30]),
+                Pair(imagePaths[23],imagePaths[30]),
+                Pair(imagePaths[23],imagePaths[30])), AlbumActivity())
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    inner class SpacesItemDecoration(private val space: Int) :
+        RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(
+            outRect: Rect, view: View,
+            parent: RecyclerView, state: RecyclerView.State
+        ) {
+            outRect.left = space
+            outRect.right = space
+            outRect.bottom = space
+            // Add top margin only for the first item to avoid double space between items
+            //if (parent.getChildLayoutPosition(view) == 0)
+            //outRect.top = space
+        }
     }
 }

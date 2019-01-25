@@ -4,6 +4,7 @@ import android.app.Fragment
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.StaggeredGridLayoutManager
@@ -43,8 +44,7 @@ class PhotosFrgm : Fragment() {
                 cursor.getColumnIndex(MediaStore.Images.Media.DATA)))
         }
 
-        photosView.layoutManager = StaggeredGridLayoutManager(
-            3, StaggeredGridLayoutManager.VERTICAL)
+        photosView.layoutManager = GridLayoutManager(context,4)
         photosView.adapter = ImageAdapter(this.context,imagePaths)
 
         super.onViewCreated(view, savedInstanceState)

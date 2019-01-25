@@ -3,6 +3,7 @@ package com.example.mygooglephoto
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.support.v4.content.ContextCompat.startActivities
 import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
@@ -14,9 +15,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import java.util.*
 
 class AlbumSingleAdapter(val context: Context, val items : List<String>,
-                         val covers : ArrayList<String>)
+                         val covers : ArrayList<String>, val to : Activity)
     : RecyclerView.Adapter<AlbumSingleAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -38,7 +40,7 @@ class AlbumSingleAdapter(val context: Context, val items : List<String>,
 
         holder.view.findViewById<FrameLayout>(R.id.label_album_single)
             .setOnClickListener{
-                context.startActivity(Intent(context,MainActivity::class.java))
+                context.startActivity(Intent(context,to::class.java).putExtra("title",items[position]))
             }
 
         GlideApp.with(holder.view.findViewById(R.id.cover_single) as ImageView)
