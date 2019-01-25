@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.app.PendingIntent.getActivity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Outline
@@ -65,31 +66,17 @@ class MainActivity : AppCompatActivity(),
 
         requestAllPower(permissions)
 
-        val cursor = contentResolver.query(
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            null, null, null, null)
-
-        while (cursor.moveToNext())
-        {
-            this.imagePaths.add(cursor.getString(
-            cursor.getColumnIndex(MediaStore.Images.Media.DATA)))
-        }
-
         photos.setOnClickListener {
             setPhotos()
             resetAlbums()
             resetAlbums()
             resetSharing()
 
-            photosView.visibility = View.VISIBLE
             if (!photosFrgm.isAdded)
             {
                 fragmentManager.beginTransaction()
                     .replace(R.id.frgm_container, photosFrgm, "photos")
                     .commit()
-                photosView.layoutManager = StaggeredGridLayoutManager(
-                    3, StaggeredGridLayoutManager.VERTICAL)
-                photosView.adapter = ImageAdapter(baseContext ,imagePaths)
             }
         }
 
@@ -103,7 +90,6 @@ class MainActivity : AppCompatActivity(),
                 fragmentManager.beginTransaction()
                     .replace(R.id.frgm_container, albumsFrgm, "albums")
                     .commit()
-            photosView.visibility = View.INVISIBLE
         }
 
         assistant.setOnClickListener {

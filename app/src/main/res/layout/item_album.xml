@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:background="?android:attr/selectableItemBackground"
+                  android:layout_marginTop="20dp">
+
+        <LinearLayout android:layout_width="100dp"
+                    android:layout_height="100dp"
+                      android:padding="1dp"
+                      android:clickable="true"
+                      android:focusable="true"
+                      android:id="@+id/label_album"
+                      android:background="@drawable/bg_album"
+                    android:orientation="horizontal">
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:id="@+id/cover_one"/>
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:id="@+id/cover_two" android:cropToPadding="true"/>
+
+
+        </LinearLayout>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:textSize="14sp"
+                  android:text="People"
+        android:id="@+id/album_name"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

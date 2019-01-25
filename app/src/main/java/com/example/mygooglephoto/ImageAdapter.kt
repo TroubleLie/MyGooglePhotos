@@ -43,7 +43,9 @@ class ImageAdapter(val context: Context, val items : List<String>) : RecyclerVie
     ) {
         GlideApp.with(holder.view.findViewById(R.id.item) as ImageView)
             .load(items[position])
-            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+            .skipMemoryCache(true)
+            .thumbnail(0.25f)
+            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .into(holder.view.findViewById(R.id.item))
     }
 
